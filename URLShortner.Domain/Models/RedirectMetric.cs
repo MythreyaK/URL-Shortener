@@ -19,8 +19,7 @@ namespace URLShortner.Domain.Models
 
         public string UserAgent { get; set; }
 
-        //[Timestamp, DataType(DataType.DateTime)]
-        //public DateTime Day { get; set; }
+        public string RemoteIP { get; set; }
 
         [Timestamp, DataType(DataType.Date)]
         public DateTime ClickedOn { get; set; }
@@ -28,5 +27,7 @@ namespace URLShortner.Domain.Models
         [Url, DataType(DataType.Url)]
         public string Referrer { get; set; }
 
+        //[Timestamp, DataType(DataType.DateTime)]
+        //public DateTime Day { get; set; }
     }
 }

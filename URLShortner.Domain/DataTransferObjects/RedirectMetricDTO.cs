@@ -8,10 +8,13 @@ namespace URLShortner.Domain.DataTransferObjects
     {
         public string UserAgent { get; set; }
 
-        //public DateTime Day { get; set; }
 
         public DateTime ClickedOn { get; set; }
 
         public string Referrer { get; set; }
+
+        public string RemoteIP { get; set; }
+        
+        //public DateTime Day { get; set; }
     }
 }

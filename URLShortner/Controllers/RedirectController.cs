@@ -25,13 +25,13 @@ namespace URLShortner.API.Controllers
         [HttpGet("{urlHash}", Name = "Get")]
         public async Task<ActionResult> ResolveRedirect(string urlHash)
         {
-
             // Call the handler. Returns a URL if hash exists in DB, 
             // else returns null
-            Redirect redirect = await _dbService.ResolveAndUpdateRedirectAsync(
+            Redirect redirect = await _dbService.RedirectAccessedAsync(
                 urlHash, 
                 Request.Headers["User-Agent"].ToString(),
-                Request.Headers["Referrer"]
+                Request.Headers["Referer"],
+                Request.Host.ToUriComponent()
             );
 
             if (redirect == null) {
