@@ -19,11 +19,11 @@ namespace URLShortner.DataAccess.Services
             _context = context;
         }
 
-        private IQueryable<Redirect> GetRedirectByHash(string urlHash, bool track, bool withMetrics) {
+        private IQueryable<Redirect> GetRedirectByHash(string shortUrl, bool track, bool withMetrics) {
 
             var redirectItem = _context.RedirectsSet
                 .AsNoTracking()
-                .Where(ri => ri.ShortURL == urlHash);
+                .Where(ri => ri.ShortUrl == shortUrl);
 
             redirectItem = track ? redirectItem.AsTracking() : redirectItem.AsNoTracking();
             redirectItem = withMetrics ? redirectItem.Include(ri => ri.Metrics) : redirectItem;
@@ -31,17 +31,17 @@ namespace URLShortner.DataAccess.Services
             return redirectItem;
 
             // Some comments for info
-            //.AsNoTracking().Where(ri => ri.ShortURL == urlHash);
+            //.AsNoTracking().Where(ri => ri.ShortURL == shortUrl);
 
             //if (withMetrics) {
             //    redirectItem = _context.RedirectsSet.AsNoTracking()
-            //        .Where(ri => ri.ShortURL == urlHash)
+            //        .Where(ri => ri.ShortURL == shortUrl)
             //        .Include(ri => ri.Metrics);
             //}
 
             //else {
             //    redirectItem = _context.RedirectsSet.AsNoTracking()
-            //        .Where(ri => ri.ShortURL == urlHash);
+            //        .Where(ri => ri.ShortURL == shortUrl);
             //}
 
         }
@@ -50,7 +50,7 @@ namespace URLShortner.DataAccess.Services
             // TODO: Use a mapper
             return new RedirectDTO {
                 Name = redirectItem.Name,
-                ShortURL = redirectItem.ShortURL,
+                ShortUrl = redirectItem.ShortUrl,
                 DestinationURL = redirectItem.DestinationURL,
                 CreatedAt = redirectItem.CreatedAt,
                 ExpiresOn = redirectItem.ExpiresOn,
@@ -68,9 +68,9 @@ namespace URLShortner.DataAccess.Services
         }
 
 
-        public async Task<RedirectDTO> GetRedirectByHashAsync(string urlHash) {
+        public async Task<RedirectDTO> GetRedirectByHashAsync(string shortUrl) {
             RedirectDTO redirect = await (
-                from redirectItem in GetRedirectByHash(urlHash, false, true)
+                from redirectItem in GetRedirectByHash(shortUrl, false, true)
                 select GenerateDTO(redirectItem)
             ).FirstOrDefaultAsync();
 
@@ -92,8 +92,8 @@ namespace URLShortner.DataAccess.Services
             return newRedirect;
         }
 
-        public async Task<Redirect> RedirectAccessedAsync(string urlHash, string ua, string referrer, string rip) {
-            var item = GetRedirectByHash(urlHash, true, true).FirstOrDefault();
+        public async Task<Redirect> RedirectAccessedAsync(string shortUrl, string ua, string referrer, string rip) {
+            var item = GetRedirectByHash(shortUrl, true, true).FirstOrDefault();
 
             if (item != null) {
                 item.TotalClicks++;

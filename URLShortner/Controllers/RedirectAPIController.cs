@@ -22,10 +22,10 @@ namespace URLShortner.Controllers
             _orderService = dBService;
         }
 
-        // GET: api/UrlHash
-        [HttpGet("{urlHash}")]
-        public async Task<ActionResult<RedirectDTO>> GetByHash(string urlHash) {
-            RedirectDTO redirect = await _orderService.GetRedirectByHashAsync(urlHash);
+        // GET: api/shortUrl
+        [HttpGet("{shortUrl}")]
+        public async Task<ActionResult<RedirectDTO>> GetByHash(string shortUrl) {
+            RedirectDTO redirect = await _orderService.GetRedirectByHashAsync(shortUrl);
 
             if (redirect == null) {
                 return this.NotFound();
@@ -41,10 +41,10 @@ namespace URLShortner.Controllers
 
             return CreatedAtAction(
                 nameof(GetByHash),
-                new { urlHash = newRedirect.ShortURL },
+                new { shortUrl = newRedirect.ShortUrl },
                 new RedirectDTO {
                     Name = newRedirect.Name,
-                    ShortURL = newRedirect.ShortURL,
+                    ShortUrl = newRedirect.ShortUrl,
                     DestinationURL = newRedirect.DestinationURL,
                     CreatedAt = newRedirect.CreatedAt,
                     ExpiresOn = newRedirect.ExpiresOn,

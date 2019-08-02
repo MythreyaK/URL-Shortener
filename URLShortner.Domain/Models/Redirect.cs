@@ -12,7 +12,7 @@ namespace URLShortner.Domain.Models
         [Key]
         public ulong RedirectID { get; set; }
 
-        public string ShortURL { get; set; }
+        public string ShortUrl { get; set; }
 
         [Required, DataType(DataType.Text), StringLength(20, MinimumLength = 1,
             ErrorMessage = "Name must belong to range [1, 20] (both inclusive)")]
@@ -51,7 +51,7 @@ namespace URLShortner.Domain.Models
 
         // TODO: Use a smarter hashing function
         public void SetHash() {
-            this.ShortURL = this.RedirectID.ToString();
+            this.ShortUrl = this.RedirectID.ToString();
         }
 
 

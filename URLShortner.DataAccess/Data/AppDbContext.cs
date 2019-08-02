@@ -16,7 +16,7 @@ namespace URLShortner.DataAccess.DataContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.Entity<Redirect>()
-                .HasIndex(r => r.ShortURL);
+                .HasIndex(r => r.ShortUrl);
 
             //modelBuilder.Entity<RedirectMetric>()
             //    .HasIndex(rm => rm.Day);

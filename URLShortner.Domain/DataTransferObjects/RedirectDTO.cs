@@ -8,7 +8,7 @@ namespace URLShortner.Domain.DataTransferObjects
     public class RedirectDTO
     {
 
-        public string ShortURL { get; set; }
+        public string ShortUrl { get; set; }
 
         public string Name { get; set; }
 
