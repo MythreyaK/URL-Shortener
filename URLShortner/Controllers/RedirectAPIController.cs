@@ -39,6 +39,21 @@ namespace URLShortner.Controllers
         public ActionResult<RedirectDTO> Post(Redirect newRedirect) {
             _orderService.AddRedirectAsync(newRedirect).GetAwaiter().GetResult();
 
+            return CreatedHelper(newRedirect);
+        }
+
+        [HttpDelete("{shortUrl}")]
+        public async Task<ActionResult> DeleteRedirect(string shortUrl) {
+            bool couldDelete = await _orderService.DeleteRedirect(shortUrl);
+
+            if (couldDelete) {
+                return NoContent();
+            }
+
+            return NotFound();
+        }
+
+        private ActionResult CreatedHelper(Redirect newRedirect) {
             return CreatedAtAction(
                 nameof(GetByHash),
                 new { shortUrl = newRedirect.ShortUrl },

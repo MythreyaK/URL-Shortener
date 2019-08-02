@@ -112,6 +112,17 @@ namespace URLShortner.DataAccess.Services
         }
 
 
+        public async Task<bool> DeleteRedirect(string shortUrl) {
+            var rItem = await GetRedirectByHash(shortUrl, true, false).FirstOrDefaultAsync();
+
+            if (rItem != null) {
+                _context.RedirectsSet.Remove(rItem);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
+        }
 
 
     }
