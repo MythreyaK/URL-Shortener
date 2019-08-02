@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -25,10 +25,10 @@ namespace URLShortner.API.Controllers
         [HttpGet("{urlHash}", Name = "Get")]
         public async Task<ActionResult> ResolveRedirect(string urlHash)
         {
-            // Call the handler. Returns a URL if hash exists in DB, 
+            // Call the handler. Returns a URL if hash exists in DB,
             // else returns null
             Redirect redirect = await _dbService.RedirectAccessedAsync(
-                urlHash, 
+                urlHash,
                 Request.Headers["User-Agent"].ToString(),
                 Request.Headers["Referer"],
                 Request.Host.ToUriComponent()
@@ -37,7 +37,7 @@ namespace URLShortner.API.Controllers
             if (redirect == null) {
                 return this.NotFound();
             }
-            
+
             return Redirect(redirect.DestinationURL);
 
         }

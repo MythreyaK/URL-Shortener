@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,7 +14,7 @@ namespace URLShortner.Domain.Models
 
         public string ShortURL { get; set; }
 
-        [Required, DataType(DataType.Text), StringLength(20, MinimumLength = 1, 
+        [Required, DataType(DataType.Text), StringLength(20, MinimumLength = 1,
             ErrorMessage = "Name must belong to range [1, 20] (both inclusive)")]
         public string Name { get; set; }
 
@@ -40,7 +40,7 @@ namespace URLShortner.Domain.Models
             this.Name = name;
         }
 
-        // To remove the milliseconds part. 
+        // To remove the milliseconds part.
         private DateTime ToNearestMinute(DateTime inp) {
 
             return inp.AddTicks(-( inp.Ticks % TimeSpan.TicksPerMinute ));

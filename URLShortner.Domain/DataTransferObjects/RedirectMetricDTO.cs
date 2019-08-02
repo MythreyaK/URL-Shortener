@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,7 +14,7 @@ namespace URLShortner.Domain.DataTransferObjects
         public string Referrer { get; set; }
 
         public string RemoteIP { get; set; }
-        
+
         //public DateTime Day { get; set; }
     }
 }

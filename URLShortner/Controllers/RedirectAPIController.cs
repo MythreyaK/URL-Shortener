@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,16 +40,17 @@ namespace URLShortner.Controllers
             _orderService.AddRedirectAsync(newRedirect).GetAwaiter().GetResult();
 
             return CreatedAtAction(
-            nameof(GetByHash),
-            new { urlHash = newRedirect.ShortURL },
-            new RedirectDTO {
-                Name = newRedirect.Name,
-                ShortURL = newRedirect.ShortURL,
-                DestinationURL = newRedirect.DestinationURL,
-                CreatedAt = newRedirect.CreatedAt,
-                ExpiresOn = newRedirect.ExpiresOn,
-                Metrics = null
-            });
+                nameof(GetByHash),
+                new { urlHash = newRedirect.ShortURL },
+                new RedirectDTO {
+                    Name = newRedirect.Name,
+                    ShortURL = newRedirect.ShortURL,
+                    DestinationURL = newRedirect.DestinationURL,
+                    CreatedAt = newRedirect.CreatedAt,
+                    ExpiresOn = newRedirect.ExpiresOn,
+                    Metrics = null
+                }
+            );
         }
 
 

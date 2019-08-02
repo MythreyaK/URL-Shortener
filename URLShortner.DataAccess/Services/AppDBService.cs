@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -29,7 +29,7 @@ namespace URLShortner.DataAccess.Services
             redirectItem = withMetrics ? redirectItem.Include(ri => ri.Metrics) : redirectItem;
 
             return redirectItem;
-            
+
             // Some comments for info
             //.AsNoTracking().Where(ri => ri.ShortURL == urlHash);
 
@@ -110,7 +110,7 @@ namespace URLShortner.DataAccess.Services
         }
 
 
-        
+
 
     }
 }
