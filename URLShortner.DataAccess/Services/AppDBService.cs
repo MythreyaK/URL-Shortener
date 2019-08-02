@@ -54,6 +54,7 @@ namespace URLShortner.DataAccess.Services
                 DestinationURL = redirectItem.DestinationURL,
                 CreatedAt = redirectItem.CreatedAt,
                 ExpiresOn = redirectItem.ExpiresOn,
+                TotalClicks = redirectItem.TotalClicks,
                 Metrics = (
                     from redirectMetricItem in redirectItem.Metrics
                     select new RedirectMetricDTO {
@@ -95,6 +96,7 @@ namespace URLShortner.DataAccess.Services
             var item = GetRedirectByHash(urlHash, true, true).FirstOrDefault();
 
             if (item != null) {
+                item.TotalClicks++;
                 item.Metrics.Add(
                     new RedirectMetric {
                         ClickedOn = DateTime.UtcNow,

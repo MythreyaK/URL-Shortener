@@ -18,6 +18,8 @@ namespace URLShortner.Domain.DataTransferObjects
 
         public DateTime? ExpiresOn { get; set; }
 
+        public ulong TotalClicks { get; set; }
+
         public IEnumerable<RedirectMetricDTO> Metrics { get; set; }
     }
 }

@@ -48,6 +48,7 @@ namespace URLShortner.Controllers
                     DestinationURL = newRedirect.DestinationURL,
                     CreatedAt = newRedirect.CreatedAt,
                     ExpiresOn = newRedirect.ExpiresOn,
+                    TotalClicks = newRedirect.TotalClicks,
                     Metrics = null
                 }
             );

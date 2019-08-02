@@ -27,6 +27,9 @@ namespace URLShortner.Domain.Models
         [Timestamp, DataType(DataType.DateTime)]
         public DateTime? ExpiresOn { get; set; }
 
+
+        public ulong TotalClicks { get; set; }
+
         public ICollection<RedirectMetric> Metrics { get; set; }
 
 
