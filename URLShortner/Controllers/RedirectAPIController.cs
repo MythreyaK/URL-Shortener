@@ -16,16 +16,16 @@ namespace URLShortner.Controllers
     [ApiController]
     public class RedirectAPIController : ControllerBase
     {
-        private readonly AppDBService _orderService;
+        private readonly AppDBService _dbService;
 
         public RedirectAPIController(AppDBService dBService) {
-            _orderService = dBService;
+            _dbService = dBService;
         }
 
         // GET: api/shortUrl
         [HttpGet("{shortUrl}")]
         public async Task<ActionResult<RedirectDTO>> GetByHash(string shortUrl) {
-            RedirectDTO redirect = await _orderService.GetRedirectByHashAsync(shortUrl);
+            RedirectDTO redirect = await _dbService.GetRedirectByHashAsync(shortUrl);
 
             if (redirect == null) {
                 return this.NotFound();
@@ -37,14 +37,14 @@ namespace URLShortner.Controllers
         // POST: redirect
         [HttpPost]
         public ActionResult<RedirectDTO> Post(Redirect newRedirect) {
-            _orderService.AddRedirectAsync(newRedirect).GetAwaiter().GetResult();
+            _dbService.AddRedirectAsync(newRedirect).GetAwaiter().GetResult();
 
             return CreatedHelper(newRedirect);
         }
 
         [HttpDelete("{shortUrl}")]
         public async Task<ActionResult> DeleteRedirect(string shortUrl) {
-            bool couldDelete = await _orderService.DeleteRedirect(shortUrl);
+            bool couldDelete = await _dbService.DeleteRedirect(shortUrl);
 
             if (couldDelete) {
                 return NoContent();
