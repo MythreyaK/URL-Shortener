@@ -68,13 +68,11 @@ namespace URLShortner.DataAccess.Services
         }
 
 
-        public async Task<RedirectDTO> GetRedirectByHashAsync(string shortUrl) {
-            RedirectDTO redirect = await (
+        public Task<RedirectDTO> GetRedirectByHashAsync(string shortUrl) {
+            return (
                 from redirectItem in GetRedirectByHash(shortUrl, false, true)
                 select GenerateDTO(redirectItem)
             ).FirstOrDefaultAsync();
-
-            return redirect;
         }
 
         public Task<List<RedirectDTO>> GetAllRedirectsAsync() {
