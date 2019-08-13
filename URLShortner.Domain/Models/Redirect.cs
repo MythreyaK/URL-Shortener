@@ -12,6 +12,11 @@ namespace URLShortner.Domain.Models
         [Key]
         public ulong RedirectID { get; set; }
 
+        [RegularExpression(@"[a-zA-Z0-9]", ErrorMessage ="Short URL must satisfy regex" +
+            "[a-zA-Z0-9]")]
+        [StringLength(10, MinimumLength=1, ErrorMessage = "Length must lie" +
+            "in range [1, 10]")]
+        [DataType(DataType.Text)]
         public string ShortUrl { get; set; }
 
         [Required, DataType(DataType.Text), StringLength(20, MinimumLength = 1,
