@@ -36,8 +36,10 @@ namespace URLShortner.Controllers
 
         // POST: redirect
         [HttpPost]
-        public ActionResult<RedirectDTO> Post(Redirect newRedirect) {
-            _dbService.AddRedirectAsync(newRedirect).GetAwaiter().GetResult();
+        public async Task<ActionResult<RedirectDTO>> Post(Redirect newRedirect) {
+            await _dbService.AddRedirectAsync(newRedirect);
+            return CreatedHelper(newRedirect);
+        }
 
             return CreatedHelper(newRedirect);
         }
