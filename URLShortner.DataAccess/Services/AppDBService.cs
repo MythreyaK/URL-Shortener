@@ -11,6 +11,12 @@ using URLShortner.Domain.Models;
 
 namespace URLShortner.DataAccess.Services
 {
+    public enum DBServiceResult {
+        NotAllowed,
+        Successful,
+        NotFound,
+    }
+
     public class AppDBService
     {
         private readonly AppDbContext _context;
@@ -90,6 +96,13 @@ namespace URLShortner.DataAccess.Services
             return newRedirect;
         }
 
+        public async Task<Redirect> AddRedirectWithHashAsync(string shortUrl, Redirect newRedirect) {
+            await _context.AddAsync(newRedirect);
+            newRedirect.ShortUrl = shortUrl;
+            await _context.SaveChangesAsync();
+            return newRedirect;
+        }
+
         public async Task<Redirect> RedirectAccessedAsync(string shortUrl, string ua, string referrer, string rip) {
             var item = GetRedirectByHash(shortUrl, true, true).FirstOrDefault();
 
@@ -122,6 +135,28 @@ namespace URLShortner.DataAccess.Services
             return false;
         }
 
+        public async Task<DBServiceResult> UpdateRedirect(string shortUrl, Redirect updatedRedirectItem) {
+            var rItem = await GetRedirectByHash(shortUrl, true, false).FirstOrDefaultAsync();
 
+            if (rItem == null) {
+                return DBServiceResult.NotFound;
+            }
+            else {
+                // Only if the new redirect has the same destination
+                // URL, update info
+                if (rItem.DestinationURL.Equals(updatedRedirectItem.DestinationURL)){
+                    // This line can raise a validation error that is
+                    // sent to the user as a 400 BadRequest
+                    rItem.ExpiresOn = updatedRedirectItem.ExpiresOn;
+                    rItem.Name = updatedRedirectItem.Name;
+                    await _context.SaveChangesAsync();
+                    return DBServiceResult.Successful;
+                }
+                // Could not update as DestinationURL changed
+                else {
+                    return DBServiceResult.NotAllowed;
+                }
+            }
+        }
     }
 }

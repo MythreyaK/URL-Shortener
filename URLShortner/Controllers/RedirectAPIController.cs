@@ -41,7 +41,31 @@ namespace URLShortner.Controllers
             return CreatedHelper(newRedirect);
         }
 
-            return CreatedHelper(newRedirect);
+        [HttpPut("{shortUrl}")]
+        public async Task<ActionResult<RedirectDTO>> PutRedirect(string shortUrl, Redirect redirect) {
+            var couldPut = await _dbService.UpdateRedirect(shortUrl, redirect);
+
+            if (couldPut == DBServiceResult.Successful) {
+                return NoContent();
+            }
+            else if (couldPut == DBServiceResult.NotAllowed) {
+                return BadRequest(new {
+                    errors = new {
+                        destinationURL = new string [] {
+                            "The destination of the URL cannot be changed."
+                        }
+                    },
+                    type = "https://tools.ietf.org/html/rfc7231#section-6.5.8",
+                    title = "Vaidation error occurred",
+                    status = 400
+                });
+            }
+            else {
+                // Create a new redirect object at the given shortUrl
+                // At this point, we do not need to check for duplicates
+                await _dbService.AddRedirectWithHashAsync(shortUrl, redirect);
+                return CreatedHelper(redirect);
+            }
         }
 
         [HttpDelete("{shortUrl}")]
