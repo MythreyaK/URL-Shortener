@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using URLShortner.DataAccess.DataContext;
-using URLShortner.Domain.DataTransferObjects;
-using URLShortner.Domain.Models;
+using URLShortener.DataAccess.DataContext;
+using URLShortener.Domain.DataTransferObjects;
+using URLShortener.Domain.Models;
 
-namespace URLShortner.DataAccess.Services
+namespace URLShortener.DataAccess.Services
 {
     public enum DBServiceResult {
         NotAllowed,

@@ -1,13 +1,13 @@
-# URL Shortner
+# URL Shortener
 
-A simple URL shortner using .NET Core.  
+A simple URL shortener using .NET Core.  
 
 This project is under heavy development and currently exists only 
 to help me learn stuff. Feel free to check it out and give feedback!
 
 ## Build 
 
-Set the startup project as `URLShortner.API` and a launch configuration 
+Set the startup project as `URLShortener.API` and a launch configuration 
 of your liking (supports IIS Express, Kestrel and Docker). You'll need the
 `ASP.Net and web development` and `.NET Core cross-platform` workloads 
 installed in Visual Studio. Docker is required for Docker support. 

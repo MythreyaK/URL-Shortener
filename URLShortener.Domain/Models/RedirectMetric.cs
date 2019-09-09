@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace URLShortner.Domain.Models
+namespace URLShortener.Domain.Models
 {
     public class RedirectMetric
     {

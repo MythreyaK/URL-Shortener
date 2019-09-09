@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using URLShortner.Domain.Models;
+using URLShortener.Domain.Models;
 
-namespace URLShortner.Domain.DataTransferObjects
+namespace URLShortener.Domain.DataTransferObjects
 {
     public class RedirectDTO
     {

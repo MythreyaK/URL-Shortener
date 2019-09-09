@@ -10,11 +10,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using URLShortner.DataAccess;
-using URLShortner.DataAccess.DataContext;
-using URLShortner.DataAccess.Services;
+using URLShortener.DataAccess;
+using URLShortener.DataAccess.DataContext;
+using URLShortener.DataAccess.Services;
 
-namespace URLShortner
+namespace URLShortener
 {
     public class Startup
     {

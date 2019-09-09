@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using URLShortner.Domain.Models;
-using URLShortner.Domain.DataTransferObjects;
+using URLShortener.Domain.Models;
+using URLShortener.Domain.DataTransferObjects;
 
-namespace URLShortner.DataAccess.DataContext
+namespace URLShortener.DataAccess.DataContext
 {
     public class AppDbContext : DbContext
     {

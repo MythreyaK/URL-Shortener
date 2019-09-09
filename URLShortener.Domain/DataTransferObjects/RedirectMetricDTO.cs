@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace URLShortner.Domain.DataTransferObjects
+namespace URLShortener.Domain.DataTransferObjects
 {
     public class RedirectMetricDTO
     {

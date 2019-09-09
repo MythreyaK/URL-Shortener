@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using URLShortner.DataAccess.Services;
-using URLShortner.Domain.Models;
-using URLShortner.Domain.DataTransferObjects;
-using URLShortner.DataAccess.DataContext;
+using URLShortener.DataAccess.Services;
+using URLShortener.Domain.Models;
+using URLShortener.Domain.DataTransferObjects;
+using URLShortener.DataAccess.DataContext;
 
-namespace URLShortner.Controllers
+namespace URLShortener.Controllers
 {
     [Route("/api")]
     [ApiController]

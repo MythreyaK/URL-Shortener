@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace URLShortner.Domain.Models
+namespace URLShortener.Domain.Models
 {
     public class Redirect : IValidatableObject
     {
