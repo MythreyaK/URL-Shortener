@@ -2,9 +2,6 @@
 
 A simple URL shortener using .NET Core.  
 
-This project is under heavy development and currently exists only 
-to help me learn stuff. Feel free to check it out and give feedback!
-
 ## Build 
 
 Set the startup project as `URLShortener.API` and a launch configuration 
